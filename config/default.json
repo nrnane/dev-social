@@ -1,4 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://naga2020:naga2020@astar.uqgu3.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "mongoURI":"123",
     "jwtSecret":"mysecrettoken"
 }
