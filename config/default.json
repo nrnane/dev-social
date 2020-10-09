@@ -1,4 +1,6 @@
 {
-    "mongoURI":"123",
-    "jwtSecret":"mysecrettoken"
+    "mongoURI":"mongodb://localhost/astar",
+    "jwtSecret":"mysecrettoken",
+    "githubClientId":"5d0994f5dee6cb82eff9",
+    "githubSecret":"7d0773ce876d37e00ab789083f20f5b43faa7195"
 }
