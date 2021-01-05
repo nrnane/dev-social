@@ -68,7 +68,7 @@ router.get('/github/:username',async(req,res) => {
 router.get('/me', auth, async (req,res)=>{
     //res.send('Profiles route')
     try {
-        const profile = await Profile.findOne({user:req.user.id}).populate('user',['name','avatar']);
+        const profile = await Profile.findOne({user:req.user.id}).populate('user',['name','avatar','email']);
         if(!profile){
             return res.status(400).json({msg:'There is no profile for this user'});
         }

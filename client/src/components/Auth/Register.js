@@ -1,7 +1,11 @@
 import React, { Fragment, useState } from 'react'
-import axios from 'axios'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+import {Redirect} from 'react-router-dom'
 
-const Register = () => {
+import {setAlert} from '../../actions/alert';
+import {register} from '../../actions/auth';
+const Register = ({setAlert, register, isAuthenticated}) => {
 
     const [formData, setFormData] = useState({
         name:'',
@@ -17,32 +21,14 @@ const Register = () => {
     const onSubmit = async e => {
         e.preventDefault();
         if(password!==password2){
-            console.log("password do not match");
+            setAlert("password do not match",'danger');
         }else{
-            console.log(formData);
-            const newUser = {
-                name,
-                email,
-                password
-            }
-
-            try {
-                const config = {
-                    headers:{
-                        'Content-Type':'application/json'
-                    }
-                }
-                const body = JSON.stringify(newUser);
-
-                var res = await axios.post('http://localhost:5000/api/users',body,config);
-                console.log(res.data);
-
-            } catch (error) {
-                //console.log(error);
-                console.error(error.response.data);
-            }
+            register({name,email,password})
         }
-        
+    }
+
+    if(isAuthenticated){
+      return <Redirect to="/dashboard" />;
     }
 
     return (
@@ -54,10 +40,10 @@ const Register = () => {
                 <input type="text" placeholder="Name" name="name"
                 value={name}
                 onChange={e=>onChange(e)}
-                required />
+                 />
                 </div>
                 <div className="form-group">
-                <input type="email" placeholder="Email Address" name="email" 
+                <input type="email" placeholder="Email Address" name="email"
                 value={email}
                 onChange={e=>onChange(e)} required
                 />
@@ -95,4 +81,12 @@ const Register = () => {
     )
 }
 
-export default Register;
+Register.propType = {
+    setAlert:PropTypes.func.isRequired,
+    register:PropTypes.func.isRequired,
+    isAuthenticated:PropTypes.bool
+}
+const mapStateToProps = state=>({
+  isAuthenticated:state.auth.isAuthenticated
+})
+export default connect(mapStateToProps,{setAlert,register})(Register);
