@@ -14,7 +14,10 @@ app.use(express.json({extended:false}));
 //define routes
 app.use('/api/users',require('./routes/api/users'))
 app.use('/api/posts',require('./routes/api/posts'))
+app.use('/api/posts/:id',require('./routes/api/posts'))
 app.use('/api/profile',require('./routes/api/profile'))
+app.use('/api/profile/user/:user_id',require('./routes/api/profile'))
+app.use('/api/profile/github/:username',require('./routes/api/profile'))
 app.use('/api/profile/experience',require('./routes/api/profile'))
 app.use('/api/profile/education',require('./routes/api/profile'))
 app.use('/api/auth',require('./routes/api/auth'))

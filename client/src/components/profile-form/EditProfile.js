@@ -4,29 +4,48 @@ import {createProfile, getCurrentProfile} from '../../actions/profile'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 
+const initialState = {
+  company:'',
+  website:'',
+  location:'',
+  status:'',
+  skills:'',
+  githubusername:'',
+  bio:'',
+  twitter:'',
+  facebook:'',
+  linkedin:'',
+  youtube:'',
+  instagram:'',
+}
+
 const EditProfile = ({profile:{profile,loading},createProfile,history,getCurrentProfile}) => {
 
-    const [formData, setFormData] = useState({
-        company:'',
-        website:'',
-        location:'',
-        status:'',
-        skills:'',
-        githubusername:'',
-        bio:'',
-        twitter:'',
-        facebook:'',
-        linkedin:'',
-        youtube:'',
-        instagram:'',
-    })
+    
+    const [formData, setFormData] = useState(initialState)
     const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
     useEffect(()=>{
         getCurrentProfile();
         //profile();
         console.log(profile);
-        setFormData({
+        if(profile==null){
+          setFormData({
+            company:'',
+            website:'',
+            location:'',
+            status:'',
+            skills:'',
+            githubusername:'',
+            bio:'',
+            twitter:'',
+            facebook:'',
+            linkedin:'',
+            youtube:'',
+            instagram:'',
+          })
+        }else{
+          setFormData({
             company:loading || !profile.company?'':profile.company,
             website:loading || !profile.website?'':profile.website,
             location:loading || !profile.location?'':profile.location,
@@ -40,8 +59,10 @@ const EditProfile = ({profile:{profile,loading},createProfile,history,getCurrent
             youtube:loading || !profile.social.youtube?'':profile.social.youtube,
             instagram:loading || !profile.social.instagram?'':profile.social.instagram,
         })
+        }
         
-    },[loading])
+        
+    },[loading,getCurrentProfile])
     //loading, getCurrentProfile,profile
 
     const {

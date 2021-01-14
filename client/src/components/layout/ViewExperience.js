@@ -21,7 +21,7 @@ const ViewExperience = ({experience,deleteExpOrEducation}) =>{
     return (
         <Fragment>
             <h2 className="my-2">Experiance Credentials</h2>
-            <table>
+            <table class="table">
                 <thead>
                     <th>Company</th>
                     <th>Title</th>

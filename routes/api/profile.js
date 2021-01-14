@@ -5,6 +5,7 @@ const config = require('config');
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
 const {check,validationResult} = require('express-validator');
 
 //@route GET api/profile
@@ -50,7 +51,7 @@ router.get('/github/:username',async(req,res) => {
         request(options,(error,response,body)=>{
             if(error) console.log(error);
             //console.log(response);
-            if(response.statusCode!==200){
+            if(response.statusCode == undefined || response.statusCode!==200){
                 return res.status(404).json({msg:'No Github Profile found'});
             }
             res.json(JSON.parse(body));
@@ -85,6 +86,7 @@ router.get('/me', auth, async (req,res)=>{
 //@access private
 router.delete('/',auth,async(req,res)=>{
     try {
+        await Post.deleteMany({user:req.user._id})
         await Profile.findOneAndRemove({user:req.user.id});
 
         await User.findOneAndRemove({_id:req.user.id});

@@ -23,12 +23,14 @@ const ViewEducation = ({education, deleteExpOrEducation}) =>{
     return (
         <Fragment>
             <h2 className="my-2">Education Details</h2>
-            <table>
+            <table class="table">
                 <thead>
+                <tr>
                     <th>School</th>
                     <th>Degree</th>
                     <th className="hide-sm">Years</th>
                     <th className="hide-sm"></th>
+                    </tr>
                 </thead>
                 <tbody>
                     {educationsList}

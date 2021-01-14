@@ -8,19 +8,19 @@ import DashboardActions from './DashboardActions'
 import ViewExperience from '../layout/ViewExperience'
 import ViewEducation from '../layout/ViewEducation'
 
- const Dashboard = ({getCurrentProfile,profileState,auth:{user},
+ const Dashboard = ({getCurrentProfile,auth:{user},
     profile:{profile,loading},deleteAccount
     }) => {
 
      useEffect(()=>{
         getCurrentProfile();
-     },[loading]);
+     },[loading, getCurrentProfile]);
      
      console.log(profile)
 
      const Form = <Fragment>
     <DashboardActions />
-      <table>
+      <table class="table">
           <tbody>
          <tr>
              <td>Name</td>

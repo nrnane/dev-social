@@ -1,6 +1,6 @@
 {
-    "mongoURI":"mongodb://localhost/astar",
-    "jwtSecret":"mysecrettoken",
-    "githubClientId":"5d0994f5dee6cb82eff9",
-    "githubSecret":"7d0773ce876d37e00ab789083f20f5b43faa7195"
+    "mongoURI": "mongodb+srv://naga2020:NlLkbwh1EVkS5mZG@astar.uqgu3.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "5d0994f5dee6cb82eff9",
+    "githubSecret": "dc174f947ed1a8be5e674ed0d555878f7e4cd3b8"
 }
